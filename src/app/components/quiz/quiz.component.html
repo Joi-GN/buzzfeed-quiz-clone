@@ -1,20 +1,18 @@
 <div class="container">
   <div class="quiz__header">
     <img src="../../../assets/images/logo.png" class="logo">
-    <h2 class="quiz__title">Título do quiz</h2>
+    <h2 class="quiz__title">{{title}}</h2>
   </div>
-  <div>
-    <h3 class="quiz__question">pergunta do quiz</h3>
-  </div>
-  <div>
+  <div class="quiz__content" *ngIf="!end">
+    <h3 class="quiz__question">{{currentQuestion.question}}</h3>
     <ul class="quiz__options-list">
-      <li>
-        <button class="quiz__option">opção</button>
+      <li *ngFor="let option of currentQuestion.options">
+        <button (click)="pushAnswer(option.alias)" class="quiz__option">{{option.name}}</button>
       </li>
     </ul>
   </div>
-  <div class="quiz__result">
+  <div class="quiz__result" *ngIf="end">
     <h3 class="result__title">Resultado</h3>
-    <p class="result__p">descrição do resultado</p>
+    <p class="result__p">{{result}}</p>
   </div>
 </div>
